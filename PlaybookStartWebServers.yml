@@ -1,0 +1,23 @@
+---
+  - name: startwebservers
+    hosts: webservers #Please set this in /etc/ansible/hosts file
+    tasks:
+
+    #Starts Network File Sharing
+      - name: start nfs
+        service:
+          name: nfs
+          state: started
+
+    #Starts Nginx web server
+      - name: start nginx
+        service:
+          name: nginx
+          state: started
+
+    #This syncs the directories of webserver hosts
+      - name: start rsync #This will not run on SystemD, OpenRC only.
+        sysvinit:
+          name: rsyncd
+          state: started
+          enabled: yes

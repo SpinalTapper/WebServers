@@ -1,0 +1,12 @@
+---
+  - name: update_all
+    hosts: linux #Please set this in /etc/ansible/hosts
+    become: true
+    tasks:
+      - name: update all alpine linux servers
+        apk:
+          update_cache: yes
+   
+      - name: upgrade_all
+        apk:
+          upgrade: yes

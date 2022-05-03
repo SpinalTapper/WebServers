@@ -1,0 +1,11 @@
+---
+  - name: sync web servers
+    hosts: 
+    become: true
+    tasks:
+      - name: sync web servers
+        copy: src=/home/{uname}/SyncWebServers.sh dest=/home/{uname} mode=0777
+          update_cache: yes
+   
+      - name: execute copied script
+        command: sh /home/{uname}/SyncWebServers.sh
